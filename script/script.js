@@ -18,7 +18,7 @@ Il recap dei dati e l'output del prezzo finale, andranno quindi stampati in pagi
 
 
 
-// Quando l'utente clicca sul bottone leggo i valori delle input
+// Quando l'utente clicca sul bottone calcolo il Totale
 const calcButton = document.querySelector('#calc-btn');
 calcButton.addEventListener('click', function() {
 
@@ -34,12 +34,15 @@ calcButton.addEventListener('click', function() {
     let ticketDiscount;
     let ticketDiscountPrice;
     
-    if (customerAge < 18) {
+    if (customerAge < 18 && customerAge >= 0) {
         ticketDiscount = (ticketBasePrice / 100) * 20;
         ticketDiscountPrice = (ticketBasePrice - ticketDiscount);
     } else if (customerAge > 65) {
         ticketDiscount = (ticketBasePrice / 100) * 40;
         ticketDiscountPrice = ticketBasePrice - ticketDiscount;
+    } else if (customerAge < 0) {
+        ageError ();
+        
     } else {
         ticketDiscountPrice = ticketBasePrice;
     }
@@ -49,6 +52,9 @@ calcButton.addEventListener('click', function() {
     document.getElementById('final-price').innerHTML = "Totale: €" + finalPrice;
     });
     
+    function ageError () {
+        alert ("l'età è errata")
+    }
     
     
     
